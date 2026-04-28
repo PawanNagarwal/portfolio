@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pawan Nagarwal | LLM & Generative AI Engineer</title>
+  <meta
+    name="description"
+    content="Portfolio of Pawan Nagarwal, Senior LLM & Generative AI Engineer specializing in multi-agent systems, RAG architectures, and production-ready AI solutions."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020;
+      --bg-soft:#121933;
+      --panel:#11172b;
+      --panel-2:#18213f;
+      --text:#e8ecf8;
+      --muted:#98a2c6;
+      --line:rgba(255,255,255,0.08);
+      --brand:#7c9cff;
+      --brand-2:#5eead4;
+      --accent:#9f7aea;
+      --success:#74f0a7;
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --radius:20px;
+      --radius-sm:14px;
+      --max:1200px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,156,255,.20), transparent 30%),
+        radial-gradient(circle at top right, rgba(94,234,212,.14), transparent 28%),
+        linear-gradient(180deg,#09101e 0%,#0b1020 45%,#0e1326 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    .container{
+      width:min(92%, var(--max));
+      margin:0 auto;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(11,16,32,.65);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 0;
+    }
+
+    .logo{
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:1.05rem;
+    }
+
+    .logo span{ color:var(--brand-2); }
+
+    .nav-links{
+      display:flex;
+      gap:22px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      font-size:.95rem;
+      transition:.25s ease;
+    }
+
+    .nav-links a:hover{ color:var(--text); }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 20px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:600;
+      transition:.25s ease;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      color:white;
+      box-shadow:0 10px 24px rgba(124,156,255,.28);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 30px rgba(124,156,255,.35);
+    }
+
+    .btn-secondary{
+      border-color:var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.06);
+      transform:translateY(-2px);
+    }
+
+    .hero{ padding:88px 0 48px; }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:.9rem;
+      color:var(--brand-2);
+      background:rgba(94,234,212,.08);
+      border:1px solid rgba(94,234,212,.18);
+      padding:8px 14px;
+      border-radius:999px;
+      margin-bottom:18px;
+    }
+
+    .hero h1{
+      font-size:clamp(2.5rem, 6vw, 4.8rem);
+      line-height:1.02;
+      letter-spacing:-2px;
+      margin-bottom:18px;
+    }
+
+    .hero h1 .gradient{
+      background:linear-gradient(135deg,#ffffff 15%, #9bc0ff 45%, #5eead4 85%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width:760px;
+      margin-bottom:28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:26px;
+    }
+
+    .quick-info{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#d8def3;
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.92rem;
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:auto -40px -40px auto;
+      width:180px;
+      height:180px;
+      background:radial-gradient(circle, rgba(124,156,255,.28), transparent 60%);
+      pointer-events:none;
+    }
+
+    .metric-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .metric{
+      padding:18px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+    }
+
+    .metric h3{
+      font-size:1.7rem;
+      margin-bottom:4px;
+      color:white;
+    }
+
+    .metric p{ color:var(--muted); font-size:.9rem; }
+
+    section{ padding:40px 0; }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:18px;
+      margin-bottom:22px;
+    }
+
+    .section-head h2{
+      font-size:clamp(1.6rem, 4vw, 2.3rem);
+      letter-spacing:-1px;
+    }
+
+    .section-head p{ color:var(--muted); max-width:720px; }
+
+    .about-card,
+    .skills-wrap,
+    .timeline-item,
+    .project-card,
+    .education-card,
+    .contact-card,
+    .footer{
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .about-card{ padding:28px; }
+    .about-card p{ color:var(--muted); font-size:1.02rem; }
+
+    .skills-wrap{ padding:26px; }
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .skill-group{
+      padding:18px;
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+    }
+
+    .skill-group h3{ margin-bottom:12px; font-size:1rem; color:#f5f7ff; }
+
+    .tags{ display:flex; flex-wrap:wrap; gap:10px; }
+
+    .tag{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(124,156,255,.10);
+      border:1px solid rgba(124,156,255,.18);
+      color:#dce6ff;
+      font-size:.9rem;
+    }
+
+    .timeline{ display:grid; gap:18px; }
+
+    .timeline-item{ padding:26px; }
+
+    .timeline-top{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    .timeline-top h3{ font-size:1.18rem; }
+    .timeline-top .meta{ color:var(--brand-2); font-weight:600; }
+
+    .timeline-item ul{ padding-left:18px; color:var(--muted); }
+    .timeline-item li + li{ margin-top:10px; }
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .project-card{
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .project-card::after{
+      content:"";
+      position:absolute;
+      top:-20px;
+      right:-20px;
+      width:120px;
+      height:120px;
+      background:radial-gradient(circle, rgba(159,122,234,.18), transparent 68%);
+      pointer-events:none;
+    }
+
+    .project-card .label{
+      display:inline-block;
+      font-size:.82rem;
+      color:var(--brand-2);
+      border:1px solid rgba(94,234,212,.16);
+      background:rgba(94,234,212,.08);
+      padding:7px 10px;
+      border-radius:999px;
+      margin-bottom:14px;
+    }
+
+    .project-card h3{ font-size:1.15rem; margin-bottom:10px; }
+    .project-card p{ color:var(--muted); margin-bottom:16px; }
+
+    .mini-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+
+    .mini-tags span{
+      font-size:.82rem;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      color:#dce3fb;
+    }
+
+    .education-card,
+    .contact-card{ padding:26px; }
+
+    .education-card h3,
+    .contact-card h3{ margin-bottom:10px; }
+
+    .education-card p,
+    .contact-card p{ color:var(--muted); }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .contact-list{ margin-top:16px; display:grid; gap:12px; }
+
+    .contact-item{
+      padding:14px 16px;
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color:#dce3fb;
+      transition:.2s ease;
+    }
+
+    .contact-item:hover{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(124,156,255,.3);
+    }
+
+    .footer{
+      margin:24px auto 40px;
+      padding:18px 22px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--muted);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:all .8s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .projects-grid,
+      .skills-grid,
+      .contact-grid{ grid-template-columns:1fr; }
+      .nav-links{ display:none; }
+      .hero{ padding-top:64px; }
+    }
+
+    @media (max-width: 640px){
+      .hero h1{ letter-spacing:-1.2px; }
+      .metric-grid{ grid-template-columns:1fr; }
+      .section-head{ flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">Pawan <span>Nagarwal</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">LLM &bull; Generative AI &bull; Agentic Workflows</div>
+        <h1>
+          Building <span class="gradient">production-ready AI systems</span>
+          with RAG, multi-agent workflows, and frontier LLMs.
+        </h1>
+        <p>
+          I'm <strong>Pawan Nagarwal</strong>, a Senior LLM &amp; Generative AI Engineer with 4+ years of experience
+          designing reliable AI products across healthcare, EdTech, and HR. I specialize in LangGraph,
+          CrewAI, RAG pipelines, OCR intelligence, voice AI, and enterprise-grade automation.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="mailto:pwnnhanrj@gmail.com">Contact Me</a>
+        </div>
+
+        <div class="quick-info">
+          <div class="chip">4+ Years Experience</div>
+          <div class="chip">LangGraph &amp; CrewAI</div>
+          <div class="chip">GPT-4o, GPT-5, Claude 4</div>
+          <div class="chip">Healthcare &bull; EdTech &bull; HR</div>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <h2 style="font-size:1.15rem; margin-bottom:8px;">Impact Snapshot</h2>
+        <p style="color:var(--muted);">
+          Focused on hallucination-resistant systems, applied GenAI workflows, and measurable AI outcomes.
+        </p>
+        <div class="metric-grid">
+          <div class="metric">
+            <h3>95%</h3>
+            <p>Zero-shot OCR extraction accuracy for medical device readings</p>
+          </div>
+          <div class="metric">
+            <h3>0.8</h3>
+            <p>F1 score achieved in automated essay grading pipeline</p>
+          </div>
+          <div class="metric">
+            <h3>90%</h3>
+            <p>Overall accuracy for essay grading using BERT and GPT-4o</p>
+          </div>
+          <div class="metric">
+            <h3>AI+</h3>
+            <p>Built systems in RAG, OCR, voice AI, summarization, forecasting, and CV</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>About</h2>
+          <p>A concise overview of my experience, focus areas, and engineering approach.</p>
+        </div>
+        <div class="about-card reveal">
+          <p>
+            I design and ship AI products that are practical, scalable, and reliable in production. My work centers on
+            multi-agent systems, retrieval-augmented generation, enterprise data workflows, OCR intelligence, and
+            model-driven automation. I care deeply about clean implementation, prompt design, structured outputs,
+            context control, and reducing hallucinations in real-world AI applications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Skills</h2>
+          <p>Core technologies across LLM engineering, applied machine learning, and deployment.</p>
+        </div>
+        <div class="skills-wrap reveal">
+          <div class="skills-grid">
+            <div class="skill-group">
+              <h3>LLMs &amp; Generative AI</h3>
+              <div class="tags">
+                <span class="tag">GPT-5</span>
+                <span class="tag">GPT-4o</span>
+                <span class="tag">LLaMA 4</span>
+                <span class="tag">Claude 4</span>
+                <span class="tag">Gemini 2.5 Pro</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3>Agentic AI &amp; RAG</h3>
+              <div class="tags">
+                <span class="tag">LangChain</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">CrewAI</span>
+                <span class="tag">AutoGen</span>
+                <span class="tag">React Agent</span>
+                <span class="tag">Qdrant</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3>ML &amp; Deep Learning</h3>
+              <div class="tags">
+                <span class="tag">Scikit-learn</span>
+                <span class="tag">TensorFlow</span>
+                <span class="tag">Keras</span>
+                <span class="tag">BERT</span>
+                <span class="tag">Transformers</span>
+                <span class="tag">LSTM</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3>Computer Vision &amp; NLP</h3>
+              <div class="tags">
+                <span class="tag">OpenCV</span>
+                <span class="tag">MediaPipe</span>
+                <span class="tag">YOLO</span>
+                <span class="tag">SpaCy</span>
+                <span class="tag">NLTK</span>
+                <span class="tag">TF-IDF</span>
+                <span class="tag">Word2Vec</span>
+                <span class="tag">BART</span>
+                <span class="tag">Gensim</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3>Cloud &amp; Deployment</h3>
+              <div class="tags">
+                <span class="tag">AWS EC2</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Kubernetes</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Streamlit</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3>Languages &amp; Tools</h3>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Git</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">Matplotlib</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Experience</h2>
+          <p>Recent roles focused on LLM systems, enterprise AI workflows, NLP, forecasting, and computer vision.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-top">
+              <div>
+                <h3>Senior AI/ML Engineer &mdash; Sarvika Technologies</h3>
+                <div class="meta">May 2023 &ndash; Present</div>
+              </div>
+            </div>
+            <ul>
+              <li>Built an automated HR screening pipeline using LangGraph and React Agents to extract structured candidate data while minimizing hallucinations with LLaMA 4 Maverick.</li>
+              <li>Designed a GPT-4o OCR extraction system for BP devices and glucometers, achieving 95% accuracy on zero-shot reading extraction.</li>
+              <li>Improved retrieval quality for a voice-enabled RAG chatbot by combining LangChain with Qdrant vector search and careful context-window management for GPT-4o.</li>
+              <li>Created a dynamic LLM course generator that produces personalized, multi-module learning paths from minimal user input.</li>
+              <li>Fine-tuned BERT and GPT-4o for automated essay grading, achieving F1 score 0.8 and 90% overall accuracy.</li>
+              <li>Developed a CSV/Excel Q&amp;A chatbot enabling business users to query enterprise data using plain English.</li>
+            </ul>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-top">
+              <div>
+                <h3>ML Developer &mdash; Durapid Technologies</h3>
+                <div class="meta">May 2022 &ndash; Apr 2023</div>
+              </div>
+            </div>
+            <ul>
+              <li>Built an enterprise text summarization tool using BART and Gensim to reduce reading time and optimize token usage.</li>
+              <li>Integrated OpenAI Whisper with Gradio to create a fast voice interface for speech-based applications.</li>
+              <li>Programmed a real-time physiotherapy tracking tool with MediaPipe to monitor poses and count repetitions.</li>
+              <li>Built ARIMA and N-BEATS forecasting models to predict employee attrition and support HR planning.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Selected Projects</h2>
+          <p>Portfolio-style highlights derived from production work and AI system development experience.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <span class="label">Agentic AI</span>
+            <h3>AI HR Screening Agent</h3>
+            <p>Automated candidate screening workflow using LangGraph and React Agents to extract structured applicant data and improve consistency in evaluation.</p>
+            <div class="mini-tags"><span>LangGraph</span><span>React Agent</span><span>LLaMA 4</span></div>
+          </article>
+          <article class="project-card reveal">
+            <span class="label">OCR + LLM</span>
+            <h3>Medical Device OCR Engine</h3>
+            <p>GPT-4o-based OCR pipeline for reading BP monitor and glucometer outputs with 95% accuracy on zero-shot extraction.</p>
+            <div class="mini-tags"><span>GPT-4o</span><span>Prompt Engineering</span><span>Healthcare AI</span></div>
+          </article>
+          <article class="project-card reveal">
+            <span class="label">RAG</span>
+            <h3>Voice-enabled RAG Assistant</h3>
+            <p>Retrieval pipeline enhanced with LangChain and Qdrant to improve answer quality for conversational enterprise use cases.</p>
+            <div class="mini-tags"><span>LangChain</span><span>Qdrant</span><span>Voice AI</span></div>
+          </article>
+          <article class="project-card reveal">
+            <span class="label">EdTech</span>
+            <h3>AI Course Generator</h3>
+            <p>Personalized course creation workflow that chains prompts together to generate structured, multi-module learning plans.</p>
+            <div class="mini-tags"><span>LLM Workflows</span><span>Prompt Chaining</span><span>Learning Design</span></div>
+          </article>
+          <article class="project-card reveal">
+            <span class="label">NLP Evaluation</span>
+            <h3>Automated Essay Grading</h3>
+            <p>BERT and GPT-4o-powered grading system trained on large text datasets, delivering F1 score 0.8 and 90% accuracy.</p>
+            <div class="mini-tags"><span>BERT</span><span>GPT-4o</span><span>Evaluation AI</span></div>
+          </article>
+          <article class="project-card reveal">
+            <span class="label">Enterprise Data</span>
+            <h3>CSV/Excel Data Chatbot</h3>
+            <p>Natural-language data assistant that helps business users query structured CSV and Excel files in plain English.</p>
+            <div class="mini-tags"><span>Agentic Frameworks</span><span>Structured Data</span><span>Business AI</span></div>
+          </article>
+          <article class="project-card reveal">
+            <span class="label">Speech &amp; UI</span>
+            <h3>Speech Interface Tool</h3>
+            <p>Voice-focused application integrating Whisper and Gradio for fast speech-based interaction workflows.</p>
+            <div class="mini-tags"><span>Whisper</span><span>Gradio</span><span>Speech AI</span></div>
+          </article>
+          <article class="project-card reveal">
+            <span class="label">Computer Vision</span>
+            <h3>Physio Pose Tracker</h3>
+            <p>Real-time MediaPipe system for physiotherapy pose tracking and repetition counting in movement-based exercises.</p>
+            <div class="mini-tags"><span>MediaPipe</span><span>Pose Tracking</span><span>CV</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Education</h2>
+          <p>Academic background and foundational training.</p>
+        </div>
+        <div class="education-card reveal">
+          <h3>B.Tech &mdash; Mechanical Engineering</h3>
+          <p>GEC, Bikaner &nbsp;|&nbsp; 2017 &ndash; 2021</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Contact</h2>
+          <p>Open to Senior AI engineering roles, GenAI product work, and applied LLM opportunities.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card reveal">
+            <h3>Let's build something useful</h3>
+            <p>If you're hiring for LLM engineering, GenAI products, RAG systems, or AI automation, I'd be glad to connect.</p>
+            <div class="contact-list">
+              <a class="contact-item" href="mailto:pwnnhanrj@gmail.com">&#9993; &nbsp; pwnnhanrj@gmail.com</a>
+              <a class="contact-item" href="tel:+917014628414">&#128222; &nbsp; +91-7014628414</a>
+              <a class="contact-item" href="https://www.linkedin.com/in/pawan-nagarwal-522694169/" target="_blank" rel="noopener noreferrer">&#128101; &nbsp; linkedin.com/in/pawan-nagarwal-522694169</a>
+              <a class="contact-item" href="https://github.com/PawanNagarwal" target="_blank" rel="noopener noreferrer">&#128187; &nbsp; github.com/PawanNagarwal</a>
+            </div>
+          </div>
+          <div class="contact-card reveal">
+            <h3>Open to opportunities</h3>
+            <p style="margin-bottom:14px;">
+              Currently working as a Senior AI/ML Engineer at Sarvika Technologies, focused on building enterprise-grade
+              LLM systems, agentic pipelines, and RAG workflows. Available for freelance, consulting, and full-time senior roles.
+            </p>
+            <p>Based in Jaipur, Rajasthan, India.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="container">
+    <div class="footer">
+      <span>&copy; 2026 Pawan Nagarwal</span>
+      <span>Senior LLM &amp; Generative AI Engineer</span>
+    </div>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
